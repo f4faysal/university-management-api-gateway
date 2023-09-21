@@ -1,4 +1,5 @@
 import { v2 as cloudinary } from 'cloudinary';
+import multer from 'multer';
 
 cloudinary.config({
      cloud_name: 'dhvuyehnq',
@@ -6,7 +7,16 @@ cloudinary.config({
      api_secret: 'ToOxkCHyEuCqfys6x7tiZo5TSMw'
 });
 
+const storage = multer.diskStorage({
+     destination: function (req, file, cb) {
+          cb(null, 'uploads/')
+     },
+     filename: function (req, file, cb) {
+          cb(null, file.originalname)
+     }
+});
 
+const upload = multer({ storage: storage })
 
 const uploadToCloudinary = async (file: any) => {
 
@@ -17,5 +27,6 @@ const uploadToCloudinary = async (file: any) => {
 };
 
 export const FileUploadHelper = {
-     uploadToCloudinary
+     uploadToCloudinary,
+     upload
 };
