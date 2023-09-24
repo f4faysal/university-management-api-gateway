@@ -1,9 +1,9 @@
 import axios, { AxiosInstance } from "axios";
 import config from "../config";
 
-const HttpService = (baseUrl: string): AxiosInstance => {
+const HttpService = (baseUrls: string): AxiosInstance => {
      const instance = axios.create({
-          baseURL: baseUrl,
+          baseURL: baseUrls,
           timeout: 10000,
           headers: {
                'Content-Type': 'application/json'
